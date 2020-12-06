@@ -21,7 +21,7 @@ export class CidadeService {
 
       )
   }
-  getCidade(cidade: Cidade): Observable<Cidade> {
-    return this.http.post<Cidade>(this.url + '/findAll', cidade);
+  getCidade(): Observable<Cidade[]> {
+    return this.http.get<Cidade[]>(this.url + '/api/cidade/findAll');
   }
 }

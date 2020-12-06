@@ -36,5 +36,21 @@
   </table>
 </form>
 </div>
-
+<table datatable class="row-border hover">
+  <thead>
+    <tr>
+      <th>Cidade</th>
+      <th>Populacao</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+    <tr *ngFor="let cidade of cidadeList">
+      <td>{{ cidade.nome }}</td>
+      <td>{{ cidade.populacao }}</td>
+      <td>{{ cidade.idEstado }}</td>
+    </tr>
+  </tbody>
+</table>
 <router-outlet></router-outlet>
