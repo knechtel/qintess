@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Estado } from '../models/Estado'
 import { Cidade } from '../models/Cidade'
 import { EstadoService } from 'src/service/estado.service';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { FormGroup, FormControl, NgForm, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  id=2;
   imgPath = "/assets/sc.svg"
   estadoList: Estado[] ;
   estadoSelecionado:Estado  = new Estado(
@@ -20,26 +20,36 @@ export class AppComponent implements OnInit {
     10000
   )
   cidade:Cidade  = new  Cidade(1,"Tramandai" ,1000,1); 
-  constructor(private estadoService:EstadoService){
+  form1: FormGroup ;
+
+  constructor(private estadoService:EstadoService,fb: FormBuilder){
     this.estadoList = estadoService.getEstados()
+    this.form1 = fb.group({
+      nome: new FormControl(''),
+      populacao:new FormControl('')
+      });
+  
   }
   ngOnInit(): void {
-    
+ 
   }
-
   onSelect(e:any) {
     const id =  e.target.value;
-    
+    this.id=id;
     console.log(id);
-    if(id==2){
+    if(this.id==2){
       this.imgPath = "/assets/sc.svg"
       // this.cidade.idEstado = id
-    }else if (id==1){
+    }else if (this.id==1){
       this.imgPath = "/assets/rs.png"
       // this.cidade.idEstado = id
-    }else if(id==3){
+    }else if(this.id==3){
       this.imgPath = "/assets/pr.svg"
       // this.cidade.idEstado = id
     }
+  }
+
+  doSave(form1:NgForm){
+
   }
 }

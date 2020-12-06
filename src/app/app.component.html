@@ -1,15 +1,40 @@
 <div>
-  <table>
+
+  <table id="tabela2" style=" margin-right: auto; margin-left: auto;">
     <tr>
       <td>
-      <img src={{imgPath}}  width="300" height="300"/>
+        <img src={{imgPath}}  width="300" height="300"/>
       </td>
+    </tr>
+    <tr>
+      <h2>Selecione o estado:</h2>
     </tr>
     <tr>
     <select (change)="onSelect($event)">
       <option [selected]="estado.id == 2" [value]="estado.id" *ngFor='let estado of estadoList'>{{estado.nome}}</option>
     </select>
-  </tr>
+    </tr>
   </table>
+  <form [formGroup]="form1" (ngSubmit)="doSave(form1.value)">
+  <table id="tabl1" style="margin-right: auto; margin-left: auto;">
+    <tr>
+      <h3>Cadastro de cidade:</h3>
+    </tr>
+    <tr>
+      <td>Nome da cidade</td>
+      <td><input type="text" formControlName="nome" [(ngModel)]="cidade.nome"/></td>
+    </tr>
+    <tr>
+      <td>População</td>
+      <td><input type="text" formControlName="populacao" [(ngModel)]="cidade.populacao" /></td>
+    </tr>
+    <br>
+    <tr>
+      <td></td>
+      <input type="button" value="enviar" style="float: right;" type="submit" />
+    </tr>
+  </table>
+</form>
 </div>
+
 <router-outlet></router-outlet>
