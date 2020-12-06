@@ -1,9 +1,27 @@
 import { Injectable } from '@angular/core';
-
+import { HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Cidade } from '../models/Cidade'
 @Injectable({
   providedIn: 'root'
 })
 export class CidadeService {
 
-  constructor() { }
+  url: string = 'http://localhost:8080';
+  // Headers
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
+  constructor(private http: HttpClient) { }
+
+  postCidade(cidade: Cidade): Observable<Cidade> {
+    return this.http.post<Cidade>(this.url + '/api/cidade/create/', JSON.stringify(cidade), this.httpOptions)
+      .pipe(
+
+      )
+  }
+  getCidade(cidade: Cidade): Observable<Cidade> {
+    return this.http.post<Cidade>(this.url + '/findAll', cidade);
+  }
 }

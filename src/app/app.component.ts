@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Estado } from '../models/Estado'
 import { Cidade } from '../models/Cidade'
 import { EstadoService } from 'src/service/estado.service';
+import { CidadeService } from '../service/cidade.service'
 import { FormGroup, FormControl, NgForm, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 
 
@@ -19,10 +20,10 @@ export class AppComponent implements OnInit {
     "Santa Catarina",
     10000
   )
-  cidade:Cidade  = new  Cidade(1,"Tramandai" ,1000,1); 
+  cidade:Cidade  = new  Cidade("Tramandai" ,1000,1); 
   form1: FormGroup ;
 
-  constructor(private estadoService:EstadoService,fb: FormBuilder){
+  constructor(private estadoService:EstadoService,fb: FormBuilder,private cidadeService:CidadeService){
     this.estadoList = estadoService.getEstados()
     this.form1 = fb.group({
       nome: new FormControl(''),
@@ -49,7 +50,10 @@ export class AppComponent implements OnInit {
     }
   }
 
-  doSave(form1:NgForm){
-
+  async doSave(form1:NgForm){
+    this.cidade.idEstado= this.id
+    console.log("populacao - >"+this.cidade.populacao)
+    await this.cidadeService.postCidade(this.cidade).toPromise();
+    console.log("mandei")
   }
 }
