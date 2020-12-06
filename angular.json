@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "qintess-app"
+  "defaultProject": "qintess-app",
+  "cli": {
+    "analytics": "7611d32c-c719-4525-a214-0b3c91a9dbaa"
+  }
 }
