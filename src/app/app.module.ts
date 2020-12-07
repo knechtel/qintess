@@ -10,12 +10,15 @@ import { CidadeComponent } from './cidade/cidade.component';
 import { RouterModule } from '@angular/router';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CadastroCidadeComponent } from './cadastro-cidade/cadastro-cidade.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FileSelectDirective } from 'ng2-file-upload';
 @NgModule({
   declarations: [
     AppComponent,
     CidadeComponent,
     NavBarComponent,
     CadastroCidadeComponent,
+    FileUploadComponent,
     
   ],
   imports: [
@@ -26,7 +29,8 @@ import { CadastroCidadeComponent } from './cadastro-cidade/cadastro-cidade.compo
     HttpClientModule,
     DataTablesModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    
     
   ],
   providers: [],

@@ -1,12 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Estado } from '../models/Estado'
+import { CustoPopulacional } from '../models/CustoPopulacional'
+import { HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class EstadoService {
 
-  constructor() { }
+  url: string = 'http://localhost:8080';
+  // Headers
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
 
+  constructor(private http: HttpClient) { }
+
+  getCustoPopulacional(custoPopulacional:CustoPopulacional){
+    return this.http.post<CustoPopulacional>(this.url + '/api/estado/getValor', JSON.stringify(custoPopulacional), this.httpOptions);
+  }
 
   getEstados():Estado[]{
     return  [new Estado(

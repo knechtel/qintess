@@ -1,70 +1,87 @@
-
 <div>
+    <tr>
+        <td>Atual custo Populacional: </td>
+        <td>${{custoPopulacional.custo.toFixed(2)}}</td>
+    </tr>
     <div>
-    <div *ngIf="cadSucesso">
-      <p>
-        <ngb-alert>
-         Cidade cadastrada com sucesso.
-        </ngb-alert>
-      </p>
-    </div>
-      <table id="tabela2" style=" margin-right: auto; margin-left: auto;">
-        <tr>
-          <td>
-            <img src={{imgPath}}  width="300" height="300"/>
-          </td>
-        </tr>
-        <tr>
-          <h2>Selecione o esstado:</h2>
-        </tr>
-        <tr>
-        <select (change)="onSelect($event)">
-          <option [selected]="estado.id == 2" [value]="estado.id" *ngFor='let estado of estadoList'>{{estado.nome}}</option>
-        </select>
-        </tr>
-      </table>
-      <form [formGroup]="form1" (ngSubmit)="doSave(form1.value)">
-      <table id="tabl1" style="margin-right: auto; margin-left: auto;">
-        <tr>
-          <h3>Cadastro de cidade:</h3>
-        </tr>
-        <tr>
-          <td>Nome da cidade</td>
-          <td><input type="text" formControlName="nome" [(ngModel)]="cidade.nome"/></td>
-        </tr>
-        <tr>
-          <td>População</td>
-          <td><input type="text" formControlName="populacao" [(ngModel)]="cidade.populacao" /></td>
-        </tr>
-        <br>
-        <tr>
-          <td></td>
-          <input type="button" value="enviar" style="float: right;" type="submit" />
-        </tr>
-      </table>
-    </form>
-    </div>
-    <table datatable class="row-border hover">
-      <thead>
-        <tr>
-          <th>Cidade</th>
-          <th>Populacao</th>
-          <th>Estado</th>
-          <th>Deletar</th>
-        </tr>
-      </thead>
-      <tbody>
-       
-        <tr *ngFor="let cidade of cidadeList">
-          <td>{{ cidade.nome }}</td>
-          <td>{{ cidade.populacao }}</td>
-          <td>{{ cidade.idEstado }}</td>
-          <td> <a routerLink="/cidade/{{cidade.id}}"  >
-            {{cidade.nome}} id:  {{cidade.id}}
-        </a></td>
-        </tr>
-      </tbody>
-    </table>
-    
-    </div>
-    
+        <div *ngIf="cadRepitido">
+            <p>
+                <ngb-alert type="danger">
+                    Cidade já cadastrada no banco dados.
+                </ngb-alert>
+            </p>
+
+        </div>
+
+        <div>
+            <div *ngIf="cadSucesso">
+                <p>
+                    <ngb-alert>
+                        Cidade cadastrada com sucesso.
+                    </ngb-alert>
+                </p>
+
+            </div>
+            <table id="tabela2" style=" margin-right: auto; margin-left: auto;">
+                <tr>
+                    <td>
+                        <img src={{imgPath}} width="300" height="300" />
+                    </td>
+                </tr>
+              
+                <tr>
+                    <h2>Selecione o esstado:</h2>
+                </tr>
+                <tr>
+                    <select (change)="onSelect($event)">
+                        <option [selected]="estado.id == 2" [value]="estado.id" *ngFor='let estado of estadoList'>
+                            {{estado.nome}}</option>
+                    </select>
+                </tr>
+            </table>
+            <form [formGroup]="form1" (ngSubmit)="doSave(form1.value)">
+                <table id="tabl1" style="margin-right: auto; margin-left: auto;">
+
+                    
+                    <tr>
+                        <h3>Cadastro de cidade:</h3>
+                    </tr>
+                    <tr>
+                        <td>Nome da cidade</td>
+                        <td><input type="text" formControlName="nome" [(ngModel)]="cidade.nome" /></td>
+                    </tr>
+                    <tr>
+                        <td>População</td>
+                        <td><input type="text" formControlName="populacao" [(ngModel)]="cidade.populacao" /></td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td></td>
+                        <input type="button" value="enviar" style="float: right;" type="submit" />
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <table datatable class="row-border hover">
+            <thead>
+                <tr>
+                    <th>Cidade</th>
+                    <th>Populacao</th>
+                    <th>Estado</th>
+                    <th>Deletar</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr *ngFor="let cidade of cidadeList">
+                    <td>{{ cidade.nome }}</td>
+                    <td>{{ cidade.populacao }}</td>
+                    <td>{{ cidade.idEstado }}</td>
+                    <td> <a routerLink="/cidade/{{cidade.id}}">
+                            {{cidade.nome}} id: {{cidade.id}}
+                        </a></td>
+                </tr>
+            </tbody>
+        </table>
+
+  
