@@ -11,7 +11,8 @@ import { RouterModule } from '@angular/router';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CadastroCidadeComponent } from './cadastro-cidade/cadastro-cidade.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
-import { FileSelectDirective } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
     NavBarComponent,
     CadastroCidadeComponent,
     FileUploadComponent,
+  
     
   ],
   imports: [
@@ -30,6 +32,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
     DataTablesModule,
     NgbModule,
     RouterModule,
+    FileUploadModule
+  
     
     
   ],
