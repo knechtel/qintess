@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Estado } from '../models/Estado'
-import { Cidade } from '../models/Cidade'
+import { Estado } from '../../models/Estado'
+import { Cidade } from '../../models/Cidade'
 import { EstadoService } from 'src/service/estado.service';
-import { CidadeService } from '../service/cidade.service'
+import { CidadeService } from '../../service/cidade.service'
 import { FormGroup, FormControl, NgForm, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import {NgbAlertConfig} from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './cadastro-cidade.component.html',
+  styleUrls: ['./cadastro-cidade.component.css']
 })
-export class AppComponent implements OnInit {
+export class CadastroCidadeComponent implements OnInit {
   id = 2;
   imgPath = "/assets/sc.svg"
   cidadeList: Cidade[];
@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
     this.alertConfig.type = 'success';
     this.alertConfig.dismissible = false;  
     this.cadSucesso = true
-    await this.delay(3000);
+    await this.delay(8000);
     this.cadSucesso = false
   }
 
@@ -73,6 +73,6 @@ export class AppComponent implements OnInit {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
   doNavegate(){
-    this.router.navigate(["/cidade/"+this.cidade.id]);
+   // this.router.navigate(["/cidade/"+this.cidade.id]);
   }
 }

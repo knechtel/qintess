@@ -6,9 +6,16 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CidadeComponent } from './cidade/cidade.component';
+import { RouterModule } from '@angular/router';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CadastroCidadeComponent } from './cadastro-cidade/cadastro-cidade.component';
 @NgModule({
   declarations: [
     AppComponent,
+    CidadeComponent,
+    NavBarComponent,
+    CadastroCidadeComponent,
     
   ],
   imports: [
@@ -19,6 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     DataTablesModule,
     NgbModule,
+    RouterModule
     
   ],
   providers: [],
