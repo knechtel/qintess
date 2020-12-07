@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +18,7 @@ import { DataTablesModule } from 'angular-datatables';
     ReactiveFormsModule,
     HttpClientModule,
     DataTablesModule,
+    NgbModule,
     
   ],
   providers: [],

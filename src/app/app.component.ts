@@ -4,7 +4,7 @@ import { Cidade } from '../models/Cidade'
 import { EstadoService } from 'src/service/estado.service';
 import { CidadeService } from '../service/cidade.service'
 import { FormGroup, FormControl, NgForm, ReactiveFormsModule, FormBuilder } from '@angular/forms';
-
+import {NgbAlertConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -21,26 +21,28 @@ export class AppComponent implements OnInit {
     "Santa Catarina",
     10000
   )
-  cidade: Cidade = new Cidade("Tramandai", 1000, 1);
+  public cadSucesso:boolean = false
+  cidade: Cidade = new Cidade("", 1000, 1);
   form1: FormGroup;
 
-  constructor(private estadoService: EstadoService, fb: FormBuilder, private cidadeService: CidadeService) {
+  constructor(private alertConfig: NgbAlertConfig,private estadoService: EstadoService, fb: FormBuilder, private cidadeService: CidadeService) {
     this.estadoList = estadoService.getEstados()
     this.form1 = fb.group({
       nome: new FormControl(''),
       populacao: new FormControl('')
     });
+    this.alertConfig.dismissible=true
+    
+  }
+  async ngOnInit() {
+    this.cidadeList = await this.cidadeService.getCidadeByEstado(this.estadoSelecionado).toPromise();
+  }
 
-  }
-  ngOnInit(): void {
-    this.cidadeService.getCidade().subscribe(res => {
-      this.cidadeList = res;
-    })
-  }
-  onSelect(e: any) {
+  async onSelect(e: any) {
     const id = e.target.value;
     this.id = id;
     console.log(id);
+    this.estadoSelecionado.id=id;
     if (this.id == 2) {
       this.imgPath = "/assets/sc.svg"
       // this.cidade.idEstado = id
@@ -51,12 +53,23 @@ export class AppComponent implements OnInit {
       this.imgPath = "/assets/pr.svg"
       // this.cidade.idEstado = id
     }
+    this.cidadeList = await this.cidadeService.getCidadeByEstado(this.estadoSelecionado).toPromise();
   }
 
   async doSave(form1: NgForm) {
-    this.cidade.idEstado = this.id
-    console.log("populacao - >" + this.cidade.populacao)
+    this.cidade.idEstado = this.id; 
     await this.cidadeService.postCidade(this.cidade).toPromise();
-    console.log("mandei")
+    this.cidade.nome = ''
+    this.cidade.populacao = 0;
+    this.cidadeList = await this.cidadeService.getCidadeByEstado(this.estadoSelecionado).toPromise();
+    this.alertConfig.type = 'success';
+    this.alertConfig.dismissible = false;  
+    this.cadSucesso = true
+    await this.delay(3000);
+    this.cadSucesso = false
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 }

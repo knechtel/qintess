@@ -1,5 +1,13 @@
-<div>
 
+
+<div>
+<div *ngIf="cadSucesso">
+  <p>
+    <ngb-alert>
+     Cidade cadastrada com sucesso.
+    </ngb-alert>
+  </p>
+</div>
   <table id="tabela2" style=" margin-right: auto; margin-left: auto;">
     <tr>
       <td>
@@ -7,7 +15,7 @@
       </td>
     </tr>
     <tr>
-      <h2>Selecione o estado:</h2>
+      <h2>Selecione o esstado:</h2>
     </tr>
     <tr>
     <select (change)="onSelect($event)">
@@ -53,4 +61,5 @@
     </tr>
   </tbody>
 </table>
+
 <router-outlet></router-outlet>

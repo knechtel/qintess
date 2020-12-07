@@ -1,5 +1,5 @@
 export class Cidade{
-    id: number
+    id: number 
     nome: string
     populacao: number
     idEstado: number
