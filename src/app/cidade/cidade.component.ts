@@ -11,6 +11,8 @@ import { CidadeService } from 'src/service/cidade.service';
 export class CidadeComponent implements OnInit {
   cidade: Cidade = new Cidade("", 1000, 1);
   cidadeList: Cidade[];
+  public deleteSucesso:boolean = false
+  public deleteErroRS:boolean = false
   constructor(private route: ActivatedRoute,  
     private router: Router,
     private cidadeService:CidadeService) { }
@@ -20,6 +22,22 @@ export class CidadeComponent implements OnInit {
     this.cidadeList = await this.cidadeService.getCidade().toPromise();
     this.cidade=this.cidadeList.find(cidade => cidade.id === id)!;
     
+  }
+  
+  async deleteCidade (){
+    if(this.cidade.idEstado == 1){
+      this.deleteErroRS = true
+      await this.delay(5000);
+      this.deleteErroRS = false
+    }else{
+      this.deleteSucesso = true
+      await this.cidadeService.postDeleteCidade(this.cidade).toPromise();
+      await this.delay(5000);
+      this.deleteSucesso = false
+    }
+  }
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
 }

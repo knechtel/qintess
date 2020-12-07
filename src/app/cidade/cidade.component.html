@@ -1,22 +1,38 @@
 <div>
+    <div *ngIf="deleteSucesso">
+        <p>
+          <ngb-alert>
+           Cidade deletada com sucesso.
+          </ngb-alert>
+        </p>
+      </div>
+      <div *ngIf="deleteErroRS">
+        <p>
+          <ngb-alert>
+           Nao é possivel remover cidade do RS.
+          </ngb-alert>
+        </p>
+      </div>
     <h3>É Possível deletar cidades dos estados Paraná e Santa Catariana</h3>
     <p>cidade works! </p>
     <div id="content-wrap">
-        <table>
-            <tr>
-                <td>Nome da Cidade: </td>
-                <td>{{cidade.nome}}</td>
-            </tr>
-            <tr>
-                <td>População: </td>
-                <td>{{cidade.populacao}}</td>
-            </tr>
-            <tr>
-                <td>Código do Estado: </td>
-                <td>{{cidade.idEstado}}</td>
-            </tr>
-            <input type="button" value="Deletar" style="float: left;"  />
-        </table>
+        <form (ngSubmit)="deleteCidade()"> 
+            <table>
+                <tr>
+                    <td>Nome da Cidade: </td>
+                    <td>{{cidade.nome}}</td>
+                </tr>
+                <tr>
+                    <td>População: </td>
+                    <td>{{cidade.populacao}}</td>
+                </tr>
+                <tr>
+                    <td>Código do Estado: </td>
+                    <td>{{cidade.idEstado}}</td>
+                </tr>
+            <input type="button" value="Deletar" style="float: left;" type="submit" />
+            </table>
+        </form>
     </div>
 </div>
 

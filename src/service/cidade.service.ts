@@ -28,4 +28,7 @@ export class CidadeService {
   getCidadeByEstado(estado:Estado): Observable<Cidade[]> {
     return this.http.post<Cidade[]>(this.url + '/api/cidade/findByEstado', JSON.stringify(estado), this.httpOptions);
   }
+  postDeleteCidade(cidade:Cidade){
+    return this.http.post<Cidade[]>(this.url + '/api/cidade/delete', JSON.stringify(cidade), this.httpOptions);
+  }
 }
