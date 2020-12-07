@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class CadastroCidadeComponent implements OnInit {
   id = 2;
   imgPath = "/assets/sc.svg"
-  cidadeList: Cidade[];
+  cidadeList!: Cidade[];
   estadoList: Estado[];
   estadoSelecionado: Estado = new Estado(
     2,
