@@ -12,6 +12,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CadastroCidadeComponent } from './cadastro-cidade/cadastro-cidade.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { CotacaoDolarComponent } from './cotacao-dolar/cotacao-dolar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     NavBarComponent,
     CadastroCidadeComponent,
     FileUploadComponent,
+    CotacaoDolarComponent,
   
     
   ],

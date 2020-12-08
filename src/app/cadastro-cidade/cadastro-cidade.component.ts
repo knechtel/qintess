@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Estado } from '../../models/Estado'
-import { Cidade } from '../../models/Cidade'
-import { CustoPopulacional } from '../../models/CustoPopulacional'
+import { Estado } from '../../models/Estado';
+import { Cidade } from '../../models/Cidade';
+import { CustoPopulacional } from '../../models/CustoPopulacional';
 import { EstadoService } from 'src/service/estado.service';
-import { CidadeService } from '../../service/cidade.service'
+import { CidadeService } from '../../service/cidade.service';
+import { CotacaoDolarService } from '../../service/cotacao-dolar.service'
 import { FormGroup, FormControl, NgForm, ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import {NgbAlertConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { CotacaoDTO } from 'src/models/CotacaoDTO';
 @Component({
   selector: 'app-root',
   templateUrl: './cadastro-cidade.component.html',
@@ -17,6 +19,7 @@ export class CadastroCidadeComponent implements OnInit {
   imgPath = "/assets/sc.svg"
   cidadeList!: Cidade[];
   estadoList: Estado[];
+  cotacaoDolar!:CotacaoDTO;
   estadoSelecionado: Estado = new Estado(
     2,
     "Santa Catarina",
@@ -28,7 +31,12 @@ export class CadastroCidadeComponent implements OnInit {
   cidade: Cidade = new Cidade("", 1000, 1);
   form1: FormGroup;
 
-  constructor(private router: Router,private alertConfig: NgbAlertConfig,private estadoService: EstadoService, fb: FormBuilder, private cidadeService: CidadeService) {
+  constructor(private router: Router,
+              private alertConfig: NgbAlertConfig,
+              private estadoService: EstadoService, 
+              fb: FormBuilder, 
+              private cidadeService: CidadeService,
+              private cotacaoDolarService:CotacaoDolarService) {
     this.estadoList = estadoService.getEstados()
     this.form1 = fb.group({
       nome: new FormControl(''),
@@ -38,8 +46,10 @@ export class CadastroCidadeComponent implements OnInit {
     
   }
   async ngOnInit() {
+    this.cotacaoDolar = await this.cotacaoDolarService.getCotacao().toPromise();
     this.cidadeList = await this.cidadeService.getCidadeByEstado(this.estadoSelecionado).toPromise();
     this.custoPopulacional = await this.estadoService.getCustoPopulacional(this.custoPopulacional).toPromise();
+    this.custoPopulacional.custo = this.custoPopulacional.custo*this.cotacaoDolar.real;
   }
 
   async onSelect(e: any) {
