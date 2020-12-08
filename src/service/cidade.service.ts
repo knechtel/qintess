@@ -9,7 +9,7 @@ import { Estado } from '../models/Estado';
 })
 export class CidadeService {
 
-  url: string = 'http://ec2-54-166-140-1.compute-1.amazonaws.com:8080/';
+  url: string = 'http://ec2-54-166-140-1.compute-1.amazonaws.com:8080';
   // Headers
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
