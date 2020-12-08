@@ -32,7 +32,7 @@ export class FileUploadComponent implements OnInit {
   onUpload() {
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    this.httpClient.post('http://localhost:8080/api/estado/upload/', uploadImageData, { observe: 'response' })
+    this.httpClient.post('http://ec2-54-166-140-1.compute-1.amazonaws.com:8080/api/estado/upload/', uploadImageData, { observe: 'response' })
       .subscribe((response) => {
       }
       );
@@ -51,7 +51,7 @@ export class FileUploadComponent implements OnInit {
   }
 
   async doJob() {
-    await this.httpClient.post('http://localhost:8080/api/estado/import/',this.httpOptions).toPromise()
+    await this.httpClient.post('http://ec2-54-166-140-1.compute-1.amazonaws.com:8080/api/estado/import/',this.httpOptions).toPromise()
   }
 
 }

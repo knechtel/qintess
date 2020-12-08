@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class EstadoService {
 
-  url: string = 'http://localhost:8080';
+  url: string = 'http://ec2-54-166-140-1.compute-1.amazonaws.com:8080/';
   // Headers
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
